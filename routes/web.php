@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -37,6 +38,9 @@ Route::get('password/reset/{token}', Reset::class)
 
 Route::middleware('auth')->group(function () {
     Route::view('/', 'welcome')->name('home');
+
+// coba dengan controller
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
 
     Route::get('email/verify', Verify::class)
         ->middleware('throttle:6,1')
